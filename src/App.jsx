@@ -74,7 +74,7 @@ const AFFIRMATIONS = [
 ];
 
 // ── RECIPE DETAIL SCREEN ──────────────────────────────────────────────────────
-function RecipeDetail({ recipe, favourites, toggleFav, hideRecipe, onBack, addToShoppingList }) {
+function RecipeDetail({ recipe, favourites, toggleFav, hideRecipe, onBack, onAddToShop }) {
   const [checkedSteps, setCheckedSteps] = useState({});
   const [checkedIng, setCheckedIng] = useState({});
   const [addedToShop, setAddedToShop] = useState(false);
@@ -173,7 +173,7 @@ function RecipeDetail({ recipe, favourites, toggleFav, hideRecipe, onBack, addTo
           </div>
 
           {/* Shopping list button */}
-          <button onClick={()=>{ addToShoppingList(detail.ingredients); setAddedToShop(true); setTimeout(()=>setAddedToShop(false),2000); }} style={{width:"100%", padding:"12px", borderRadius:"12px", background:addedToShop?"#EAF3DE":C.accentLight, border:`0.5px solid ${addedToShop?"#5A8F6E":C.accentBorder}`, color:addedToShop?"#5A8F6E":C.accentDark, fontSize:"13px", cursor:"pointer", marginBottom:"8px", fontFamily:"'DM Sans', system-ui, sans-serif", display:"flex", alignItems:"center", justifyContent:"center", gap:"6px"}}>
+          <button onClick={()=>{ onAddToShop(detail.ingredients); setAddedToShop(true); setTimeout(()=>setAddedToShop(false),2000); }} style={{width:"100%", padding:"12px", borderRadius:"12px", background:addedToShop?"#EAF3DE":C.accentLight, border:`0.5px solid ${addedToShop?"#5A8F6E":C.accentBorder}`, color:addedToShop?"#5A8F6E":C.accentDark, fontSize:"13px", cursor:"pointer", marginBottom:"8px", fontFamily:"'DM Sans', system-ui, sans-serif", display:"flex", alignItems:"center", justifyContent:"center", gap:"6px"}}>
             {addedToShop ? "✓ Added to shopping list!" : "🛒 Add ingredients to shopping list"}
           </button>
 
@@ -285,7 +285,7 @@ export default function CystaApp() {
       toggleFav={toggleFav}
       hideRecipe={hideRecipe}
       onBack={()=>setSelectedRecipe(null)}
-      addToShoppingList={addToShoppingList}
+      onAddToShop={addToShoppingList}
     />
   );
 
